@@ -12,9 +12,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Экран загрузки (оптимизирован)
+// Экран загрузки отключен (можно включить, раскомментировав код ниже)
+/*
 window.addEventListener('load', () => {
-    // Используем requestAnimationFrame для плавной анимации
     requestAnimationFrame(() => {
         const loader = document.createElement('div');
         loader.id = 'page-loader';
@@ -54,7 +54,6 @@ window.addEventListener('load', () => {
         
         document.body.insertBefore(loader, document.body.firstChild);
         
-        // Используем setTimeout вместо задержки для лучшей производительности
         requestAnimationFrame(() => {
             setTimeout(() => {
                 loader.style.opacity = '0';
@@ -67,6 +66,7 @@ window.addEventListener('load', () => {
         });
     });
 });
+*/
 
 // Анимация появления элементов при прокрутке
 const observerOptions = {
