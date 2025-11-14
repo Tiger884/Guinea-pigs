@@ -749,6 +749,46 @@ footer {
     border-top: 3px solid var(--color-primary-light);
 }
 
+.theme-switcher {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.theme-switcher button {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--footer-text);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.theme-switcher button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.theme-switcher button.active {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--color-primary);
+    border-color: var(--color-gold);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+body[data-theme="christmas"] .theme-switcher button.active {
+    color: #4A5D7C;
+    border-color: #4A90E2;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+}
+
 footer p {
     font-size: 1rem;
 }
@@ -1007,3 +1047,37 @@ body[data-theme="christmas"] .snowflake {
 body:not([data-theme="christmas"]) .snowflake {
     display: none;
 }
+
+/* Дополнительные стили для Christmas темы */
+body[data-theme="christmas"] #hero {
+    background: linear-gradient(135deg, #E0F4FF 0%, #C8E4F0 100%);
+}
+
+body[data-theme="christmas"] .hero-content h1 {
+    color: #4A5D7C;
+    text-shadow: 0 2px 10px rgba(74, 144, 226, 0.3);
+}
+
+body[data-theme="christmas"] .master-card {
+    border: 3px solid #A8DADC;
+}
+
+body[data-theme="christmas"] .master-card:hover {
+    box-shadow: 0 10px 40px rgba(74, 144, 226, 0.3);
+}
+
+body[data-theme="christmas"] .sticky-note {
+    background: linear-gradient(135deg, #A8DADC 0%, #6B8CAE 100%);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+}
+
+body[data-theme="christmas"] .buy-button {
+    background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+    box-shadow: 0 5px 20px rgba(74, 144, 226, 0.5);
+}
+
+body[data-theme="christmas"] nav {
+    background: rgba(224, 244, 255, 0.98);
+    box-shadow: 0 2px 10px rgba(74, 144, 226, 0.2);
+}
+

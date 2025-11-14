@@ -539,6 +539,24 @@ class ThemeManager {
         }
     }
 
+    setTheme(themeName) {
+        this.currentTheme = themeName;
+        this.applyTheme(themeName);
+        
+        // Удаляем старые снежинки
+        document.querySelectorAll('.snowflake').forEach(s => s.remove());
+        
+        // Добавляем снежинки для рождественской темы
+        if (themeName === 'christmas') {
+            this.initSnowfall();
+        }
+        
+        // Обновляем активную кнопку
+        document.querySelectorAll('.theme-switcher button').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.theme === themeName);
+        });
+    }
+
     applyTheme(themeName) {
         // Trace theme application
         if (window.ArtistPawsTracer) {
@@ -647,7 +665,30 @@ class ThemeManager {
 
 // Инициализируем ThemeManager при загрузке DOM
 document.addEventListener('DOMContentLoaded', () => {
-    new ThemeManager();
+    const themeManager = new ThemeManager();
+    
+    // Создаём переключатель тем в футере
+    const footer = document.querySelector('footer');
+    if (footer) {
+        const switcher = document.createElement('div');
+        switcher.className = 'theme-switcher';
+        switcher.innerHTML = `
+            <span style="margin-right: 10px;">Theme:</span>
+            <button data-theme="default" class="${themeManager.currentTheme === 'default' ? 'active' : ''}">🍂 Autumn</button>
+            <button data-theme="christmas" class="${themeManager.currentTheme === 'christmas' ? 'active' : ''}">❄️ Winter</button>
+        `;
+        footer.appendChild(switcher);
+        
+        // Обработчики кликов
+        switcher.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                themeManager.setTheme(btn.dataset.theme);
+            });
+        });
+    }
+    
+    // Делаем доступным глобально для отладки
+    window.themeManager = themeManager;
 });
 
 // Обновляем cursor trail для использования сезонных эмодзи
