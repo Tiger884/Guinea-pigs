@@ -15,7 +15,14 @@
             this.activeSpans = new Map();
             this.sessionId = this.generateId();
             
-            console.log('🔍 Artist Paws Tracing initialized - Session:', this.sessionId);
+            // Отключаем трассировку на production (GitHub Pages)
+            this.isProduction = window.location.hostname !== 'localhost' && 
+                               window.location.hostname !== '127.0.0.1' &&
+                               !window.location.hostname.includes('local');
+            
+            if (!this.isProduction) {
+                console.log('🔍 Artist Paws Tracing initialized - Session:', this.sessionId);
+            }
         }
 
         generateId() {
@@ -117,6 +124,12 @@
                         }]
                     }]
                 };
+
+                // Не отправляем трассировку на production
+                if (this.isProduction) {
+                    console.debug('Tracing disabled on production');
+                    return;
+                }
 
                 // Send to AI Toolkit trace collector
                 const response = await fetch(this.endpoint, {
