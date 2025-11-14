@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://tiger884.github.io/Guinea-pigs/</loc>
+        <lastmod>2025-11-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://tiger884.github.io/Guinea-pigs/images/ui/logo.png</image:loc>
+            <image:title>Artist Paws Logo</image:title>
+        </image:image>
+    </url>
+    
+    <!-- Plyushka Page -->
+    <url>
+        <loc>https://tiger884.github.io/Guinea-pigs/plyushka.html</loc>
+        <lastmod>2025-11-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://tiger884.github.io/Guinea-pigs/images/artists/plyushka.jpg</image:loc>
+            <image:title>Plyushka - Cheerful Art Director</image:title>
+            <image:caption>Guinea pig artist specializing in bright, cheerful colors</image:caption>
+        </image:image>
+    </url>
+    
+    <!-- Laska Page -->
+    <url>
+        <loc>https://tiger884.github.io/Guinea-pigs/laska.html</loc>
+        <lastmod>2025-11-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://tiger884.github.io/Guinea-pigs/images/artists/laska.jpg</image:loc>
+            <image:title>Laska - Chief Introvert Designer</image:title>
+            <image:caption>Guinea pig artist specializing in warm tones and contemplative art</image:caption>
+        </image:image>
+    </url>
+    
+</urlset>

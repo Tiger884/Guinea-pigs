@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         buyButton.addEventListener('click', function() {
-            alert('🎨 Спасибо за интерес к работам наших пушистых художников! Скоро здесь появится магазин.');
+            alert('🎨 Thanks for your interest in our fluffy artists\' work! A shop is coming soon.');
         });
     }
 
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Приветственное сообщение в консоли
-    console.log('� Добро пожаловать в ART BY PAWS! Искусство от пушистых лапок! 🎨');
+    console.log('🐾 Welcome to Artist Paws! Art from fluffy paws! 🎨');
 });
 
 // Изменение стиля заголовка при прокрутке
@@ -302,6 +302,13 @@ function addParallaxEffect() {
 
 // Улучшенный просмотр изображений
 function createImageViewer(img, e) {
+    // Trace image viewer opening
+    const viewerSpan = window.ArtistPawsTracer ? 
+        window.ArtistPawsTracer.startSpan('image.viewer.open', {
+            'image.src': img.src,
+            'image.alt': img.alt || 'no-alt'
+        }) : null;
+    
     const overlay = document.createElement('div');
     overlay.style.cssText = `
         position: fixed;
@@ -342,12 +349,26 @@ function createImageViewer(img, e) {
     setTimeout(() => {
         overlay.style.background = 'rgba(0,0,0,0.95)';
         imageContainer.style.transform = 'scale(1)';
+        
+        if (viewerSpan) {
+            window.ArtistPawsTracer.endSpan(viewerSpan, {
+                'viewer.status': 'opened'
+            });
+        }
     }, 10);
     
     overlay.addEventListener('click', function() {
+        const closeSpan = window.ArtistPawsTracer ? 
+            window.ArtistPawsTracer.startSpan('image.viewer.close') : null;
+        
         imageContainer.style.transform = 'scale(0)';
         overlay.style.background = 'rgba(0,0,0,0)';
-        setTimeout(() => document.body.removeChild(overlay), 300);
+        setTimeout(() => {
+            document.body.removeChild(overlay);
+            if (closeSpan) {
+                window.ArtistPawsTracer.endSpan(closeSpan);
+            }
+        }, 300);
     });
 }
 
@@ -457,3 +478,204 @@ window.addEventListener('orientationchange', function() {
         window.scrollTo(0, 0);
     }, 100);
 });
+
+// =============== THEME MANAGER FOR SEASONAL THEMES ===============
+class ThemeManager {
+    constructor() {
+        this.currentTheme = this.getCurrentSeason();
+        this.init();
+    }
+
+    getCurrentSeason() {
+        if (typeof getCurrentSeason === 'function') {
+            return getCurrentSeason();
+        }
+        // Fallback if themes.js не загружен
+        const now = new Date();
+        const month = now.getMonth();
+        const day = now.getDate();
+        
+        if (month === 11 || (month === 0 && day <= 15)) {
+            return 'christmas';
+        }
+        return 'default';
+    }
+
+    init() {
+        // Trace theme initialization
+        if (window.ArtistPawsTracer) {
+            const themeSpan = window.ArtistPawsTracer.startSpan('theme.init', {
+                'theme.name': this.currentTheme
+            });
+            
+            try {
+                // Применяем тему при загрузке
+                this.applyTheme(this.currentTheme);
+                
+                // Инициализируем сезонные эффекты
+                if (this.currentTheme === 'christmas') {
+                    this.initSnowfall();
+                }
+                
+                window.ArtistPawsTracer.endSpan(themeSpan, {
+                    'theme.applied': 'success',
+                    'snowfall.enabled': this.currentTheme === 'christmas'
+                });
+            } catch (error) {
+                window.ArtistPawsTracer.endSpan(themeSpan, {
+                    'theme.applied': 'error',
+                    'error.message': error.message
+                });
+                throw error;
+            }
+        } else {
+            // Применяем тему при загрузке
+            this.applyTheme(this.currentTheme);
+            
+            // Инициализируем сезонные эффекты
+            if (this.currentTheme === 'christmas') {
+                this.initSnowfall();
+            }
+        }
+    }
+
+    applyTheme(themeName) {
+        // Trace theme application
+        if (window.ArtistPawsTracer) {
+            const spanId = window.ArtistPawsTracer.startSpan('theme.apply', {
+                'theme.name': themeName,
+                'theme.previous': document.body.getAttribute('data-theme') || 'none'
+            });
+            
+            document.body.setAttribute('data-theme', themeName);
+            
+            // Обновляем эмодзи для cursor trail
+            if (typeof themes !== 'undefined' && themes[themeName]) {
+                this.updateCursorEmojis(themes[themeName].emojis);
+            }
+            
+            window.ArtistPawsTracer.endSpan(spanId, {
+                'theme.emojis_updated': typeof themes !== 'undefined' && themes[themeName]
+            });
+        } else {
+            document.body.setAttribute('data-theme', themeName);
+            
+            // Обновляем эмодзи для cursor trail
+            if (typeof themes !== 'undefined' && themes[themeName]) {
+                this.updateCursorEmojis(themes[themeName].emojis);
+            }
+        }
+    }
+
+    updateCursorEmojis(emojis) {
+        // Обновляем глобальный массив эмодзи для cursor trail
+        window.seasonalEmojis = emojis;
+    }
+
+    initSnowfall() {
+        // Trace snowfall initialization
+        if (window.ArtistPawsTracer) {
+            const spanId = window.ArtistPawsTracer.startSpan('snowfall.init', {
+                'window.width': window.innerWidth
+            });
+            
+            // Создаем снегопад только на desktop
+            if (window.innerWidth <= 768) {
+                window.ArtistPawsTracer.endSpan(spanId, {
+                    'snowfall.enabled': false,
+                    'reason': 'mobile_device'
+                });
+                return;
+            }
+
+            const snowflakeCount = 20;
+            for (let i = 0; i < snowflakeCount; i++) {
+                setTimeout(() => {
+                    this.createSnowflake();
+                }, i * 200);
+            }
+
+            // Периодически добавляем новые снежинки
+            setInterval(() => {
+                if (window.innerWidth > 768 && document.body.getAttribute('data-theme') === 'christmas') {
+                    this.createSnowflake();
+                }
+            }, 3000);
+            
+            window.ArtistPawsTracer.endSpan(spanId, {
+                'snowfall.enabled': true,
+                'snowflake.count': snowflakeCount
+            });
+        } else {
+            // Создаем снегопад только на desktop
+            if (window.innerWidth <= 768) return;
+
+            const snowflakeCount = 20;
+            for (let i = 0; i < snowflakeCount; i++) {
+                setTimeout(() => {
+                    this.createSnowflake();
+                }, i * 200);
+            }
+
+            // Периодически добавляем новые снежинки
+            setInterval(() => {
+                if (window.innerWidth > 768 && document.body.getAttribute('data-theme') === 'christmas') {
+                    this.createSnowflake();
+                }
+            }, 3000);
+        }
+    }
+
+    createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        snowflake.textContent = ['❄️', '⛄', '✨'][Math.floor(Math.random() * 3)];
+        snowflake.style.left = Math.random() * 100 + 'vw';
+        snowflake.style.animationDuration = (Math.random() * 3 + 5) + 's';
+        snowflake.style.opacity = Math.random() * 0.6 + 0.4;
+        
+        document.body.appendChild(snowflake);
+
+        // Удаляем снежинку после анимации
+        setTimeout(() => {
+            if (snowflake.parentNode) {
+                snowflake.parentNode.removeChild(snowflake);
+            }
+        }, parseFloat(snowflake.style.animationDuration) * 1000);
+    }
+}
+
+// Инициализируем ThemeManager при загрузке DOM
+document.addEventListener('DOMContentLoaded', () => {
+    new ThemeManager();
+});
+
+// Обновляем cursor trail для использования сезонных эмодзи
+const originalCursorTrailCode = document.querySelector('script');
+if (!isMobileDevice && window.innerWidth > 768) {
+    document.addEventListener('mousemove', (e) => {
+        if (Math.random() > 0.8) {
+            const trail = document.createElement('div');
+            const emojis = window.seasonalEmojis || ['🐾', '✨', '🎨'];
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            trail.textContent = emoji;
+            trail.style.cssText = `
+                position: fixed;
+                left: ${e.clientX}px;
+                top: ${e.clientY}px;
+                font-size: 20px;
+                pointer-events: none;
+                z-index: 9998;
+                animation: fadeOut 1s ease-out forwards;
+                transform: translate(-50%, -50%);
+            `;
+            document.body.appendChild(trail);
+            
+            setTimeout(() => {
+                if (trail.parentNode) {
+                    trail.parentNode.removeChild(trail);
+                }
+            }, 1000);
+        }
+    });
+}

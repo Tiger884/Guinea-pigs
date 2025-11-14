@@ -1,48 +1,76 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Искусство, сделайте пушистыми лапками! Познакомьтесь с нашими художниками-свинками">
+    <meta name="description" content="Art made by fluffy paws! Meet Plyushka and Laska, our talented guinea pig artists creating unique artwork. Explore their colorful masterpieces and creative process.">
+    <meta name="keywords" content="guinea pig art, pet artists, animal art, Plyushka, Laska, fluffy paws, unique artwork, creative pets">
+    <meta name="author" content="Artist Paws">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tiger884.github.io/Guinea-pigs/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tiger884.github.io/Guinea-pigs/">
+    <meta property="og:title" content="Artist Paws - Unique Art by Guinea Pig Artists">
+    <meta property="og:description" content="Meet Plyushka and Laska, talented guinea pig artists creating colorful masterpieces with their fluffy paws!">
+    <meta property="og:image" content="https://tiger884.github.io/Guinea-pigs/images/ui/logo.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://tiger884.github.io/Guinea-pigs/">
+    <meta name="twitter:title" content="Artist Paws - Unique Art by Guinea Pig Artists">
+    <meta name="twitter:description" content="Meet Plyushka and Laska, talented guinea pig artists creating colorful masterpieces!">
+    <meta name="twitter:image" content="https://tiger884.github.io/Guinea-pigs/images/ui/logo.png">
+    
     <!-- Preconnect для ускорения загрузки изображений -->
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="dns-prefetch" href="https://images.unsplash.com">
     <!-- Preload критичных стилей -->
     <link rel="preload" href="style.css" as="style">
-    <title>ART BY PAWS - Лапки-Художники</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/ui/logo.png">
+    <link rel="apple-touch-icon" href="images/ui/logo.png">
+    
+    <title>Artist Paws - Unique Art by Guinea Pig Artists | Plyushka & Laska</title>
     <link rel="stylesheet" href="style.css">
     <!-- Defer для скриптов -->
+    <script src="themes.js"></script>
+    <script src="tracing.js"></script>
     <script src="script.js" defer></script>
 </head>
 <body>
     <header>
         <nav>
             <div class="logo">
-                <span class="paw-icon">�</span>
-                <span>ART BY PAWS</span>
+                <div class="logo-circle" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--logo-color-1, #FFD700) 0%, var(--logo-color-2, #FFA500) 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px var(--logo-shadow, rgba(255, 215, 0, 0.5)); margin-right: 15px; flex-shrink: 0; transition: all 0.3s ease; overflow: hidden;">
+                    <img src="images/ui/logo.png" alt="Artist Paws Logo" style="height: 62px; width: auto; filter: brightness(1.1) contrast(1.05); object-fit: contain;">
+                </div>
+                <span style="font-weight: 600; font-size: 1.2rem;">Artist Paws</span>
             </div>
             <ul>
-                <li><a href="#masters">Мастерами</a></li>
-                <li><a href="#process">Процесс</a></li>
-                <li><a href="#gallery">Новая</a></li>
+                <li><a href="#masters">Masters</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#gallery">Gallery</a></li>
             </ul>
             <div class="search-icon">🔍</div>
         </nav>
     </header>
 
-    <main>
+    <main role="main">
         <!-- Hero Section -->
-        <section id="hero">
+        <section id="hero" aria-label="Welcome section">
             <div class="hero-content">
-                <div class="sticky-note">
-                    <div class="note-header">ART BY PAWS</div>
-                    <div class="note-text">Shelty & Abyssinian</div>
+                <div class="sticky-note" aria-hidden="true">
+                    <div class="note-header">Artist Paws</div>
+                    <div class="note-text">Laska & Plyushka</div>
                 </div>
-                <h1>ЛАПКИ-ХУДОЖНИКИ</h1>
-                <p class="hero-subtitle">Искусто, сползайте пушистими лапками!</p>
+                <h1>PAW ARTISTS</h1>
+                <p class="hero-subtitle">Art, created by fluffy paws!</p>
                 <div class="hero-images">
-                    <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=800&h=400&fit=crop&auto=format&q=75" 
-                         alt="Свинки художники" 
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='400'%3E%3Cdefs%3E%3ClinearGradient id='heroGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E8D5C4'/%3E%3Cstop offset='100%25' style='stop-color:%23D2B48C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='400' fill='url(%23heroGrad)'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='48' fill='white' text-anchor='middle' dy='.3em'%3E🎨%3C/text%3E%3C/svg%3E" 
+                         alt="Guinea pig artists" 
                          class="hero-main-image"
                          loading="eager"
                          decoding="async">
@@ -51,80 +79,80 @@
         </section>
 
         <!-- Meet the Masters Section -->
-        <section id="masters">
-            <h2>Знакомить с Мастерами!</h2>
-            <div class="masters-grid">
-                <div class="master-card">
-                    <a href="shelty.html" class="master-link">
+        <section id="masters" aria-labelledby="masters-heading">
+            <h2 id="masters-heading">Meet the Masters!</h2>
+            <div class="masters-grid" role="list">
+                <article class="master-card" role="listitem">
+                    <a href="plyushka.html" class="master-link" aria-label="Learn more about Plyushka, Cheerful Art Director">
                         <div class="master-photo">
-                            <img src="https://images.unsplash.com/photo-1612535857348-155b88e08e0e?w=400&h=400&fit=crop&auto=format&q=75" 
-                                 alt="Шелти"
+                            <img src="images/artists/plyushka.jpg" 
+                                 alt="Plyushka"
                                  loading="lazy"
                                  decoding="async">
                         </div>
-                        <h3>Шелти ~</h3>
-                        <p class="master-desc">Главный интроверт дизайнер.</p>
-                        <p class="master-skills">Любит грызть и забивать полотна оттенками!</p>
+                        <h3>Plyushka ~</h3>
+                        <p class="master-desc">Cheerful Art Director</p>
+                        <p class="master-skills">Bold in bright cheerful colors!</p>
                     </a>
-                </div>
+                </article>
                 
-                <div class="master-card">
-                    <a href="abyssinian.html" class="master-link">
+                <article class="master-card" role="listitem">
+                    <a href="laska.html" class="master-link" aria-label="Learn more about Laska, Chief Introvert Designer">
                         <div class="master-photo">
-                            <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=400&h=400&fit=crop&auto=format&q=75" 
-                                 alt="Абиссинка"
+                            <img src="images/artists/laska.jpg" 
+                                 alt="Laska"
                                  loading="lazy"
                                  decoding="async">
                         </div>
-                        <h3>Абиссинка ~</h3>
-                        <p class="master-desc">Светлый дух директор.</p>
-                        <p class="master-skills">Отвазчезная в ярых веслюой маски и их мутэшных!</p>
+                        <h3>Laska ~</h3>
+                        <p class="master-desc">Chief Introvert Designer</p>
+                        <p class="master-skills">Loves to nibble and fill canvases with shades!</p>
                     </a>
-                </div>
+                </article>
             </div>
         </section>
 
         <!-- Process Section -->
-        <section id="process">
-            <h2>Процесс Творчества</h2>
+        <section id="process" aria-labelledby="process-heading">
+            <h2 id="process-heading">Creative Process</h2>
             <div class="video-container">
                 <div class="video-wrapper">
-                    <img src="https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=800&h=450&fit=crop&auto=format&q=75" 
-                         alt="Процесс творчества" 
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Cdefs%3E%3ClinearGradient id='processGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23C8B8A8'/%3E%3Cstop offset='100%25' style='stop-color:%23A89888'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='url(%23processGrad)'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='36' fill='white' text-anchor='middle' dy='.3em'%3E▶ Video Placeholder%3C/text%3E%3C/svg%3E" 
+                         alt="Creative process" 
                          loading="lazy"
                          decoding="async"
                          style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0;">
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4rem; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.5); cursor: pointer;">▶</div>
                 </div>
-                <p class="video-caption">Смотрите как справятся чудеспе! (Ни сима снимки и истиньность!)</p>
+                <p class="video-caption">Watch our wonders work! (Not staged, pure authenticity!)</p>
             </div>
         </section>
 
         <!-- Gallery Section -->
-        <section id="gallery">
-            <h2>Галерея Шедервов</h2>
+        <section id="gallery" aria-labelledby="gallery-heading">
+            <h2 id="gallery-heading">Gallery of Masterpieces</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=400&fit=crop&auto=format&q=75" 
-                         alt="Шедевр 1"
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FF6B9D'/%3E%3Cstop offset='100%25' style='stop-color:%23C06C84'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23g1)'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3EArtwork %231%3C/text%3E%3C/svg%3E" 
+                         alt="Masterpiece 1"
                          loading="lazy"
                          decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&h=400&fit=crop&auto=format&q=75" 
-                         alt="Шедевр 2"
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234ECDC4'/%3E%3Cstop offset='100%25' style='stop-color:%2345B7D1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23g2)'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3EArtwork %232%3C/text%3E%3C/svg%3E" 
+                         alt="Masterpiece 2"
                          loading="lazy"
                          decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1549887534-1541e9326642?w=400&h=400&fit=crop&auto=format&q=75" 
-                         alt="Шедевр 3"
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFA07A'/%3E%3Cstop offset='100%25' style='stop-color:%23FF7F50'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23g3)'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3EArtwork %233%3C/text%3E%3C/svg%3E" 
+                         alt="Masterpiece 3"
                          loading="lazy"
                          decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=400&h=400&fit=crop&auto=format&q=75" 
-                         alt="Шедевр 4"
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cdefs%3E%3ClinearGradient id='g4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2398D8C8'/%3E%3Cstop offset='100%25' style='stop-color:%236BCF7D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23g4)'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='white' text-anchor='middle' dy='.3em'%3EArtwork %234%3C/text%3E%3C/svg%3E" 
+                         alt="Masterpiece 4"
                          loading="lazy"
                          decoding="async">
                 </div>
@@ -133,30 +161,30 @@
 
         <!-- Buy Section -->
         <section id="buy">
-            <h2>Забейте свое пушито ихрустого!</h2>
+            <h2>Get Your Fluffy Art!</h2>
             <button class="buy-button">
-                <span class="button-text">КУПИТЬ</span>
-                <span class="button-subtext">(Отправьте к Насляве в подарок!)</span>
+                <span class="button-text">BUY</span>
+                <span class="button-subtext">(Send as a gift!)</span>
             </button>
         </section>
 
         <!-- More Gallery -->
         <div class="bottom-gallery">
             <div class="gallery-row">
-                <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=300&h=300&fit=crop&auto=format&q=70" 
-                     alt="Арт 1"
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cdefs%3E%3ClinearGradient id='b1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23E056FD'/%3E%3Cstop offset='100%25' style='stop-color:%23CA6BFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23b1)'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='white' text-anchor='middle' dy='.3em'%3EArt %235%3C/text%3E%3C/svg%3E" 
+                     alt="Art 5"
                      loading="lazy"
                      decoding="async">
-                <img src="https://images.unsplash.com/photo-1533158326339-7f3cf2404354?w=300&h=300&fit=crop&auto=format&q=70" 
-                     alt="Арт 2"
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cdefs%3E%3ClinearGradient id='b2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F093FB'/%3E%3Cstop offset='100%25' style='stop-color:%23F5576C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23b2)'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='white' text-anchor='middle' dy='.3em'%3EArt %236%3C/text%3E%3C/svg%3E" 
+                     alt="Art 6"
                      loading="lazy"
                      decoding="async">
-                <img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=300&h=300&fit=crop&auto=format&q=70" 
-                     alt="Арт 3"
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cdefs%3E%3ClinearGradient id='b3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2343E97B'/%3E%3Cstop offset='100%25' style='stop-color:%2338F9D7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23b3)'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='white' text-anchor='middle' dy='.3em'%3EArt %237%3C/text%3E%3C/svg%3E" 
+                     alt="Art 7"
                      loading="lazy"
                      decoding="async">
-                <img src="https://images.unsplash.com/photo-1582747652673-603191169c49?w=300&h=300&fit=crop&auto=format&q=70" 
-                     alt="Арт 4"
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cdefs%3E%3ClinearGradient id='b4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FA709A'/%3E%3Cstop offset='100%25' style='stop-color:%23FEE140'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='300' fill='url(%23b4)'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='white' text-anchor='middle' dy='.3em'%3EArt %238%3C/text%3E%3C/svg%3E" 
+                     alt="Art 8"
                      loading="lazy"
                      decoding="async">
             </div>
@@ -164,7 +192,55 @@
     </main>
 
     <footer>
-        <p>Сраино с голубя в Instagram © 2025 🐾</p>
+        <p>Straight from the heart © 2025 🐾</p>
     </footer>
+    
+    <!-- Schema.org structured data for Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Artist Paws",
+        "url": "https://tiger884.github.io/Guinea-pigs/",
+        "description": "Unique artwork created by talented guinea pig artists Plyushka and Laska",
+        "author": {
+            "@type": "Organization",
+            "name": "Artist Paws"
+        },
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://tiger884.github.io/Guinea-pigs/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Artist Paws - Guinea Pig Artists",
+        "description": "Meet Plyushka and Laska, talented guinea pig artists creating unique colorful artwork",
+        "image": "https://tiger884.github.io/Guinea-pigs/images/ui/logo.png",
+        "hasPart": [
+            {
+                "@type": "Person",
+                "name": "Plyushka",
+                "jobTitle": "Cheerful Art Director",
+                "description": "Bold artist specializing in bright cheerful colors",
+                "url": "https://tiger884.github.io/Guinea-pigs/plyushka.html",
+                "image": "https://tiger884.github.io/Guinea-pigs/images/artists/plyushka.jpg"
+            },
+            {
+                "@type": "Person",
+                "name": "Laska",
+                "jobTitle": "Chief Introvert Designer",
+                "description": "Contemplative artist specializing in warm tones and shades",
+                "url": "https://tiger884.github.io/Guinea-pigs/laska.html",
+                "image": "https://tiger884.github.io/Guinea-pigs/images/artists/laska.jpg"
+            }
+        ]
+    }
+    </script>
 </body>
 </html>
