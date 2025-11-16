@@ -482,7 +482,10 @@ window.addEventListener('orientationchange', function() {
 // =============== THEME MANAGER FOR SEASONAL THEMES ===============
 class ThemeManager {
     constructor() {
-        this.currentTheme = this.getCurrentSeason();
+        // First apply date-based theme; then allow manual overrides via localStorage
+        const autoTheme = this.getCurrentSeason();
+        const override = localStorage.getItem('artistPawsTheme');
+        this.currentTheme = override || autoTheme;
         this.init();
     }
 
@@ -541,6 +544,9 @@ class ThemeManager {
 
     setTheme(themeName) {
         this.currentTheme = themeName;
+        // Persist user override
+        if (themeName) localStorage.setItem('artistPawsTheme', themeName);
+        else localStorage.removeItem('artistPawsTheme');
         this.applyTheme(themeName);
         
         // Удаляем старые снежинки
@@ -735,12 +741,19 @@ document.addEventListener('DOMContentLoaded', () => {
             return `<button data-theme="${k}" class="${isActive}">${prefix}${display}</button>`;
         }).join('');
 
-        switcher.innerHTML = `<span style="margin-right: 10px;">Theme:</span>${buttons}`;
+        switcher.innerHTML = `<span style="margin-right: 10px;">Theme:</span>${buttons}<button data-theme="auto">🔁 Auto</button>`;
         footer.appendChild(switcher);
         
         // Обработчики кликов
         switcher.querySelectorAll('button').forEach(btn => {
             btn.addEventListener('click', () => {
+                const t = btn.dataset.theme;
+                if (t === 'auto') {
+                    // clear override and apply date-based theme
+                    localStorage.removeItem('artistPawsTheme');
+                    themeManager.setTheme(themeManager.getCurrentSeason());
+                    return;
+                }
                 themeManager.setTheme(btn.dataset.theme);
             });
         });
