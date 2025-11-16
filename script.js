@@ -557,6 +557,50 @@ class ThemeManager {
         });
     }
 
+    // Small celebratory effects
+    createConfetti(count = 30) {
+        const colors = ['#FFD400', '#0057B7', '#FF4E50', '#2ecc71', '#4A90E2'];
+        for (let i = 0; i < count; i++) {
+            const el = document.createElement('div');
+            el.className = 'confetti';
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.top = (Math.random() * 20) + 'vh';
+            el.style.background = colors[Math.floor(Math.random() * colors.length)];
+            el.style.width = (5 + Math.random() * 8) + 'px';
+            el.style.height = el.style.width;
+            el.style.opacity = 0.95;
+            el.style.position = 'fixed';
+            el.style.zIndex = 9999;
+            el.style.borderRadius = '2px';
+            el.style.pointerEvents = 'none';
+            el.style.transform = `rotate(${Math.random() * 360}deg)`;
+            document.body.appendChild(el);
+            setTimeout(() => {
+                el.style.transition = 'transform 3s ease, top 3s ease, opacity 3s ease';
+                el.style.top = (100 + Math.random() * 20) + 'vh';
+                el.style.transform = `translateY(20vh) rotate(${Math.random() * 360}deg)`;
+                el.style.opacity = 0.2;
+            }, 100);
+            setTimeout(() => el.remove(), 4000);
+        }
+    }
+
+    spawnFireworks() {
+        // simple emoji bursts
+        for (let i = 0; i < 8; i++) {
+            const n = document.createElement('div');
+            n.style.position = 'fixed';
+            n.style.left = (10 + Math.random() * 80) + 'vw';
+            n.style.top = (10 + Math.random() * 60) + 'vh';
+            n.style.zIndex = 9999;
+            n.style.fontSize = '1.5rem';
+            n.style.pointerEvents = 'none';
+            n.textContent = ['🎆', '🎇', '✨'][Math.floor(Math.random() * 3)];
+            document.body.appendChild(n);
+            setTimeout(() => n.remove(), 2500 + Math.random() * 2000);
+        }
+    }
+
     applyTheme(themeName) {
         // Trace theme application
         if (window.ArtistPawsTracer) {
@@ -582,6 +626,15 @@ class ThemeManager {
             if (typeof themes !== 'undefined' && themes[themeName]) {
                 this.updateCursorEmojis(themes[themeName].emojis);
             }
+        }
+
+        // Extra seasonal effects
+        if (themeName === 'uk-bonfire' || themeName === 'newyear') {
+            this.spawnFireworks();
+            this.createConfetti(40);
+        }
+        if (themeName === 'ua-independence' || themeName === 'st-patrick') {
+            this.createConfetti(40);
         }
     }
 
@@ -672,11 +725,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (footer) {
         const switcher = document.createElement('div');
         switcher.className = 'theme-switcher';
-        switcher.innerHTML = `
-            <span style="margin-right: 10px;">Theme:</span>
-            <button data-theme="default" class="${themeManager.currentTheme === 'default' ? 'active' : ''}">🍂 Autumn</button>
-            <button data-theme="christmas" class="${themeManager.currentTheme === 'christmas' ? 'active' : ''}">❄️ Winter</button>
-        `;
+        // Create button for each available theme
+        const themeKeys = Object.keys(themes);
+        const buttons = themeKeys.map(k => {
+            const isActive = themeManager.currentTheme === k ? 'active' : '';
+            const display = (themes[k] && themes[k].name) ? themes[k].name : k;
+            // optionally use emoji of first theme emoji
+            const prefix = (themes[k] && themes[k].emojis && themes[k].emojis[0]) ? themes[k].emojis[0] + ' ' : '';
+            return `<button data-theme="${k}" class="${isActive}">${prefix}${display}</button>`;
+        }).join('');
+
+        switcher.innerHTML = `<span style="margin-right: 10px;">Theme:</span>${buttons}`;
         footer.appendChild(switcher);
         
         // Обработчики кликов

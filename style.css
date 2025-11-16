@@ -42,6 +42,52 @@ body[data-theme="christmas"] {
     --logo-shadow: rgba(74, 144, 226, 0.5);
 }
 
+/* New Year theme */
+body[data-theme="newyear"] {
+    --bg-gradient: linear-gradient(135deg,#FFF8E1 0%,#FFE0B2 100%);
+    --header-bg: rgba(255,255,255,0.96);
+    --logo-color-1: #FFD26B;
+    --logo-color-2: #FF4E50;
+    --logo-shadow: rgba(255, 100, 50, 0.35);
+}
+
+/* Bonfire Night (UK) */
+body[data-theme="uk-bonfire"] {
+    --bg-gradient: radial-gradient(circle at 20% 20%, #0b1221 0%, #05030a 40%);
+    --header-bg: rgba(10,10,20,0.9);
+    --logo-color-1: #FF8A00;
+    --logo-color-2: #FF4500;
+    --logo-shadow: rgba(255,120,20,0.35);
+}
+
+/* St Patrick */
+body[data-theme="st-patrick"] {
+    --bg-gradient: linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);
+    --logo-color-1: #2ecc71;
+    --logo-color-2: #27ae60;
+    --logo-shadow: rgba(39,174,96,0.25);
+}
+
+/* Ukraine Independence */
+body[data-theme="ua-independence"] {
+    --bg-gradient: linear-gradient(135deg,#0057B7 0%,#FFD400 100%);
+    --logo-color-1: #0057B7;
+    --logo-color-2: #FFD400;
+    --logo-shadow: rgba(0,87,183,0.35);
+}
+
+/* Confetti and fireworks styles */
+.confetti {
+    will-change: transform, opacity;
+    pointer-events: none;
+    border-radius: 2px;
+}
+.firework {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+}
+
 /* Общие стили */
 * {
     margin: 0;
@@ -125,6 +171,11 @@ body[data-theme="christmas"] {
         transform: translateY(100vh) translateX(50px);
         opacity: 0.3;
     }
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(120vh) rotate(720deg); opacity: 0; }
 }
 
 body {
